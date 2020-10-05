@@ -1,5 +1,13 @@
 const React = require("react");
 import PropTypes from "prop-types";
+import {
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+} from "@material-ui/core";
 import { calculateTimeSeries } from "../../utils/utils";
 import cones from "../../../cones";
 const Table = ({ riskLevel }) => {
@@ -21,26 +29,28 @@ const Table = ({ riskLevel }) => {
   const dataBad = timeSeries.lower05.map((v) => v.y);
 
   const rows = months.map((entry, idx) => (
-    <tr key={idx}>
-      <td>{entry}</td>
-      <td>{dataGood[idx]}</td>
-      <td>{dataMedian[idx]}</td>
-      <td>{dataBad[idx]}</td>
-    </tr>
+    <TableRow key={idx}>
+      <TableCell>{entry}</TableCell>
+      <TableCell>{dataGood[idx]}</TableCell>
+      <TableCell>{dataMedian[idx]}</TableCell>
+      <TableCell>{dataBad[idx]}</TableCell>
+    </TableRow>
   ));
 
-  var tableHeader = React.createElement("tr", {}, [
-    React.createElement("th", { key: "month" }, "month"),
-    React.createElement("th", { key: "good" }, "good"),
-    React.createElement("th", { key: "median" }, "median"),
-    React.createElement("th", { key: "bad" }, "bad"),
-  ]);
-
   return (
-    <table>
-      <thead>{tableHeader}</thead>
-      <tbody>{rows}</tbody>
-    </table>
+    <TableContainer component={Paper}>
+      <table>
+        <TableHead>
+          <TableRow>
+            <TableCell key="month">month</TableCell>
+            <TableCell key="good">good</TableCell>
+            <TableCell key="median">median</TableCell>
+            <TableCell key="bad">bad</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>{rows}</TableBody>
+      </table>
+    </TableContainer>
   );
 };
 
