@@ -8,7 +8,7 @@ const Chart = ({ riskLevel }) => {
 
   useEffect(() => {
     drawChart();
-  }, []);
+  }, [riskLevel]);
 
   const drawChart = () => {
     const { mu, sigma } = cones.filter(
@@ -60,7 +60,7 @@ const Chart = ({ riskLevel }) => {
     };
 
     const options = {
-      responsive: false,
+      responsive: true,
       scales: {
         xAxes: [
           {
