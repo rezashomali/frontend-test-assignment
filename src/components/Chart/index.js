@@ -10,6 +10,7 @@ const Chart = ({
   initialSum,
 }) => {
   const canvas = useRef();
+  var myChart;
 
   useEffect(() => {
     drawChart();
@@ -76,8 +77,12 @@ const Chart = ({
       options,
     };
 
+    if (myChart) {
+      myChart.destroy();
+    }
+
     const context = canvas.current.getContext("2d");
-    const myChart = new ChartJs(context, config);
+    myChart = new ChartJs(context, config);
   };
 
   return (
