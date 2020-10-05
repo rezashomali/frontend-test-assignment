@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  padding: 15px;
+  color: #36707a;
+}
+
+.MuiGrid-item {
+  padding: 10px;
+}
+
+table {
+  width: 100%;
+}
