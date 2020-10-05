@@ -1,12 +1,19 @@
 import React, { useEffect, useRef } from "react";
 import { Chart as ChartJs } from "chart.js";
 
-const Chart = ({ riskLevel, labels, dataGood, dataMedian, dataBad }) => {
+const Chart = ({
+  riskLevel,
+  labels,
+  dataGood,
+  dataMedian,
+  dataBad,
+  initialSum,
+}) => {
   const canvas = useRef();
 
   useEffect(() => {
     drawChart();
-  }, [riskLevel]);
+  }, [riskLevel, initialSum]);
 
   const drawChart = () => {
     const data = {
