@@ -9,7 +9,7 @@ import {
   Paper,
 } from "@material-ui/core";
 
-const Table = ({ months, dataGood, dataMedian, dataBad }) => {
+const TableComponent = ({ months, dataGood, dataMedian, dataBad }) => {
   const rows = months.map((entry, idx) => (
     <TableRow key={idx}>
       <TableCell>{entry}</TableCell>
@@ -43,4 +43,4 @@ TableComponent.propTypes = {
   dataBad: PropTypes.array,
 };
 
-export default Table;
+export default TableComponent;

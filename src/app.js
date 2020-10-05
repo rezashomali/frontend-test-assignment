@@ -5,7 +5,7 @@ import { getCalculation } from "./utils/utils";
 
 import Menu from "./components/Menu";
 import RiskLevelSelector from "./components/RiskLevelSelector";
-import Table from "./components/Table";
+import TableComponent from "./components/TableComponent";
 import Chart from "./components/Chart";
 import "./App.css";
 import cones from "../cones";
@@ -43,19 +43,19 @@ const App = () => {
 
           <Route exact path="/">
             <Grid item xs={12}>
-              {calculation && <Table {...calculation} />}
+              {calculation && <TableComponent {...calculation} />}
             </Grid>
           </Route>
 
           <Route path="/table">
             <Grid item xs={12}>
-              {calculation && <Table {...calculation} />}
+              {calculation && <TableComponent {...calculation} />}
             </Grid>
           </Route>
 
           <Route path="/chart">
             <Grid item xs={12}>
-              <Chart riskLevel={riskLevel} />
+              {calculation && <Chart riskLevel={riskLevel} {...calculation} />}
             </Grid>
           </Route>
         </Grid>
