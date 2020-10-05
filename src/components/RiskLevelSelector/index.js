@@ -1,38 +1,47 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { TextField, MenuItem } from "@material-ui/core";
 
 const RiskLevelSelector = ({
+  riskLevel,
   onChangeRiskLevel,
   minRiskLevel,
   maxRiskLevel,
 }) => {
-  var defultRiskl = 10;
   const options = [];
-  for (let k = 1; k <= maxRiskLevel; ++k) {
+  for (let k = minRiskLevel; k <= maxRiskLevel; k++) {
     options.push(
-      <option key={k} value={k}>
+      <MenuItem key={k} value={k}>
         {k}
-      </option>
+      </MenuItem>
     );
   }
 
   return (
     <div>
-      Risk level:
-      <select onChange={onChangeRiskLevel} defaultValue={defultRiskl}>
+      <TextField
+        fullWidth
+        select
+        label="Risk level"
+        value={riskLevel}
+        onChange={onChangeRiskLevel}
+        variant="outlined"
+      >
         {options}
-      </select>
+      </TextField>
     </div>
   );
 };
 
 RiskLevelSelector.defaultProps = {
+  riskLevel: 3,
   minRiskLevel: 3,
   maxRiskLevel: 25,
   onChangeRiskLevel: () => {},
 };
 
 RiskLevelSelector.propTypes = {
+  riskLevel: PropTypes.number,
   minRiskLevel: PropTypes.number,
   maxRiskLevel: PropTypes.number,
   onChangeRiskLevel: PropTypes.func,
