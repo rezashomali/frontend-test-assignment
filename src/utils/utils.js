@@ -1,4 +1,4 @@
-function mapDate({ t, mu, sigma, fee, initialSum, monthlySum }) {
+const mapDate = ({ t, mu, sigma, fee, initialSum, monthlySum }) => {
   let yearlyReturn = mu - fee;
   let monthlyReturn = yearlyReturn / 12;
   let month = t * 12;
@@ -15,7 +15,7 @@ function mapDate({ t, mu, sigma, fee, initialSum, monthlySum }) {
     upper95: Math.exp(Math.log(median) + Math.sqrt(t) * sigma * 1.645),
     lower05: Math.exp(Math.log(median) - Math.sqrt(t) * sigma * 1.645),
   };
-}
+};
 
 const calculateTimeSeries = ({
   years,
@@ -26,7 +26,7 @@ const calculateTimeSeries = ({
   monthlySum,
 }) => {
   var series = [];
-  for (var k = 0; k <= 12 * years; ++k) {
+  for (let k = 0; k <= 12 * years; k++) {
     series.push(mapDate({ t: k / 12, mu, sigma, fee, initialSum, monthlySum }));
   }
 
@@ -36,7 +36,7 @@ const calculateTimeSeries = ({
     lower05: [],
   };
 
-  for (var k = 0; k < series.length; k++) {
+  for (let k = 0; k < series.length; k++) {
     allSeries.median.push({ y: series[k].median, x: series[k].x });
     allSeries.upper95.push({ y: series[k].upper95, x: series[k].x });
     allSeries.lower05.push({ y: series[k].lower05, x: series[k].x });
@@ -45,7 +45,7 @@ const calculateTimeSeries = ({
   return allSeries;
 };
 
-const getCalculation = (cones, riskLevel, initialSum = 1000) => {
+const getCalculation = (cones, riskLevel, initialSum) => {
   const { mu, sigma } = cones.filter((cone) => cone.riskLevel == riskLevel)[0];
   const fee = 0.01;
 
@@ -70,4 +70,4 @@ const getCalculation = (cones, riskLevel, initialSum = 1000) => {
   return { labels, months, dataGood, dataMedian, dataBad };
 };
 
-export { calculateTimeSeries, getCalculation };
+export { getCalculation };
