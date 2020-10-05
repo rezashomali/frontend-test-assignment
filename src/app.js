@@ -1,45 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Menu from "./components/Menu";
 import RiskLevelSelector from "./components/RiskLevelSelector";
 import Table from "./components/Table";
 import Chart from "./components/Chart";
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      riskLevel: 3,
-    };
-    this.onChangeRiskLevel = this.onChangeRiskLevel.bind(this);
-  }
+const App = () => {
+  const [riskLevel, setRiskLevel] = useState(3);
 
-  onChangeRiskLevel(riskLevel) {
-    this.setState({ riskLevel });
-  }
+  return (
+    <Router>
+      <div>
+        <Menu />
+        <RiskLevelSelector
+          onChangeRiskLevel={(e) => setRiskLevel(e.target.value)}
+        />
+        <Route
+          exact
+          path="/"
+          component={() => <Table riskLevel={riskLevel} />}
+        />
+        <Route
+          path="/table"
+          component={() => <Table riskLevel={riskLevel} />}
+        />
+        <Route
+          path="/chart"
+          component={() => <Chart riskLevel={riskLevel} />}
+        />
+      </div>
+    </Router>
+  );
+};
 
-  render() {
-    const { riskLevel } = this.state;
-    return (
-      <Router>
-        <div>
-          <Menu />
-          <RiskLevelSelector onChangeRiskLevel={this.onChangeRiskLevel} />
-          <Route
-            exact
-            path="/"
-            component={() => <Table riskLevel={riskLevel} />}
-          />
-          <Route
-            path="/table"
-            component={() => <Table riskLevel={riskLevel} />}
-          />
-          <Route
-            path="/chart"
-            component={() => <Chart riskLevel={riskLevel} />}
-          />
-        </div>
-      </Router>
-    );
-  }
-}
+export default App;
