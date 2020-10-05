@@ -45,12 +45,13 @@ const calculateTimeSeries = ({
   return allSeries;
 };
 
-const getCalculation = (cones, riskLevel, initialSum) => {
-  const cone = cones.filter((cone) => cone.riskLevel == riskLevel)[0];
+const getCalculation = (cones, riskLevel, initialSum = 1000) => {
+  const { mu, sigma } = cones.filter((cone) => cone.riskLevel == riskLevel)[0];
   const fee = 0.01;
+
   const timeSeries = calculateTimeSeries({
-    mu: cone.mu,
-    sigma: cone.sigma,
+    mu,
+    sigma,
     years: 10,
     initialSum,
     monthlySum: 200,
@@ -62,8 +63,8 @@ const getCalculation = (cones, riskLevel, initialSum) => {
   );
 
   const months = timeSeries.median.map((v, idx) => idx);
-  var dataGood = timeSeries.upper95.map((v) => v.y);
-  let dataMedian = timeSeries.median.map((v) => v.y);
+  const dataMedian = timeSeries.median.map((v) => v.y);
+  const dataGood = timeSeries.upper95.map((v) => v.y);
   const dataBad = timeSeries.lower05.map((v) => v.y);
 
   return { labels, months, dataGood, dataMedian, dataBad };
