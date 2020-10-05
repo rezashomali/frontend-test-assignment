@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Chart as ChartJs } from "chart.js";
 import { calculateTimeSeries } from "../../utils/utils";
 import cones from "../../../cones";
 
-class Chart extends React.Component {
-  componentDidMount() {
-    this.drawChart();
-  }
+const Chart = ({ riskLevel }) => {
+  const canvas = useRef();
 
-  drawChart() {
-    const { riskLevel } = this.props;
+  useEffect(() => {
+    drawChart();
+  }, []);
+
+  const drawChart = () => {
     const { mu, sigma } = cones.filter(
       (cone) => cone.riskLevel == riskLevel
     )[0];
@@ -91,18 +92,16 @@ class Chart extends React.Component {
       options,
     };
 
-    const canvas = this.canvas;
-    const context = canvas.getContext("2d");
+    const context = canvas.current.getContext("2d");
     const myChart = new ChartJs(context, config);
-  }
+    new ChartJs(context, config);
+  };
 
-  render() {
-    return (
-      <div>
-        <canvas ref={(ref) => (this.canvas = ref)} width={600} height={400} />
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <canvas ref={canvas} width={600} height={400} />
+    </div>
+  );
+};
 
 export default Chart;
