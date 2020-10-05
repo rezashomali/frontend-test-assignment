@@ -5,6 +5,7 @@ import Menu from "./components/Menu";
 import RiskLevelSelector from "./components/RiskLevelSelector";
 import Table from "./components/Table";
 import Chart from "./components/Chart";
+import "./App.css";
 
 const App = () => {
   const [riskLevel, setRiskLevel] = useState(3);
