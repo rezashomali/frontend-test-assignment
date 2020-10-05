@@ -8,26 +8,8 @@ import {
   TableRow,
   Paper,
 } from "@material-ui/core";
-import { calculateTimeSeries } from "../../utils/utils";
-import cones from "../../../cones";
-const Table = ({ riskLevel }) => {
-  const cone = cones.filter((cone) => cone.riskLevel == riskLevel)[0];
-  const fee = 0.01;
 
-  var timeSeries = calculateTimeSeries({
-    mu: cone.mu,
-    sigma: cone.sigma,
-    years: 10,
-    initialSum: 10000,
-    monthlySum: 200,
-    fee,
-  });
-
-  const months = timeSeries.median.map((v, idx) => idx);
-  var dataGood = timeSeries.upper95.map((v) => v.y);
-  let dataMedian = timeSeries.median.map((v) => v.y);
-  const dataBad = timeSeries.lower05.map((v) => v.y);
-
+const Table = ({ months, dataGood, dataMedian, dataBad }) => {
   const rows = months.map((entry, idx) => (
     <TableRow key={idx}>
       <TableCell>{entry}</TableCell>
@@ -54,12 +36,11 @@ const Table = ({ riskLevel }) => {
   );
 };
 
-Table.defaultProps = {
-  riskLevel: 3,
-};
-
-Table.propTypes = {
-  riskLevel: PropTypes.number,
+TableComponent.propTypes = {
+  months: PropTypes.array,
+  dataGood: PropTypes.array,
+  dataMedian: PropTypes.array,
+  dataBad: PropTypes.array,
 };
 
 export default Table;
