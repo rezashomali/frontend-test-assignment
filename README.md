@@ -9,8 +9,8 @@ Changes to Project:
 - add material ui framwork
 - add css compability to webpack config
 - move same calculation for in table and chart to utils
+- add initial investment input
 - add useDebounce for value of initialinvestment
 - add receieving data from api
-- add initial investment input
-- fix bug in risklevel selector
+- fix bug in risklevel selector (minimum Level)
 - add snapshot tests for components
