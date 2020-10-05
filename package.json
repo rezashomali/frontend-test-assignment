@@ -4,7 +4,8 @@
   "description": "Test Assignment For Frontend Developers",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "test": "jest"
   },
   "author": "ulfbiallas <ulf@scalable.capital>",
   "license": "UNLICENSED",
@@ -25,7 +26,9 @@
     "@babel/preset-react": "7.0.0",
     "babel-loader": "8.0.5",
     "copy-webpack-plugin": "4.6.0",
+    "jest": "^26.5.0",
     "path": "0.12.7",
+    "react-test-renderer": "^16.13.1",
     "webpack": "4.29.0",
     "webpack-cli": "3.2.1",
     "webpack-dev-server": "3.1.14"
