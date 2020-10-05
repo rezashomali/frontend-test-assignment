@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InvestmentInput component snapshot  1`] = `
+<div>
+  <div
+    className="MuiFormControl-root inputAmount MuiFormControl-fullWidth"
+  >
+    <label
+      className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-filled"
+      data-shrink={true}
+      htmlFor="standard-adornment-amount"
+    >
+      Amount
+    </label>
+    <div
+      className="MuiInputBase-root MuiOutlinedInput-root inputAmount__input MuiInputBase-formControl MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+      onClick={[Function]}
+    >
+      <div
+        className="MuiInputAdornment-root inputAmount__symbol MuiInputAdornment-positionStart"
+      >
+        <p
+          className="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"
+        >
+          €
+        </p>
+      </div>
+      <input
+        aria-invalid={false}
+        className="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+        disabled={false}
+        onAnimationStart={[Function]}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        required={false}
+        type="number"
+        value={1000}
+      />
+      <fieldset
+        aria-hidden={true}
+        className="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
+        style={
+          Object {
+            "paddingLeft": 8,
+          }
+        }
+      >
+        <legend
+          className="PrivateNotchedOutline-legend-2"
+          style={
+            Object {
+              "width": 53,
+            }
+          }
+        >
+          <span
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "&#8203;",
+              }
+            }
+          />
+        </legend>
+      </fieldset>
+    </div>
+    
+  </div>
+</div>
+`;
